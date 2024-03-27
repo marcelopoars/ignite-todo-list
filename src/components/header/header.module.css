@@ -1,0 +1,12 @@
+.header {
+  background-color: var(--gray-700);
+  padding: 3rem 0 4rem;
+
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .header {
+    padding: 4.5rem 0 5rem;
+  }
+}

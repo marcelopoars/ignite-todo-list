@@ -1,0 +1,7 @@
+.todoItem {
+  background-color: var(--gray-500);
+  
+  padding: 1rem;
+
+  font-size: 0.875rem;
+}

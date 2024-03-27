@@ -1,0 +1,14 @@
+.todoListWrapper {
+  padding: 0 1.5rem;
+
+  display: grid;
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .todoListWrapper {
+    max-width: 832px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+}

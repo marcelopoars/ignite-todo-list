@@ -1,0 +1,21 @@
+.todoListHeader {
+  padding: 4rem 1.5rem 1rem;
+  
+  font-weight: 700;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.todoListHeader :first-child {
+  color: var(--blue);
+}
+
+@media (min-width: 768px) {
+  .todoListHeader {
+    max-width: 832px;
+    margin: 0 auto;
+    padding: 5.75rem 2rem 1.5rem;
+  }
+}
