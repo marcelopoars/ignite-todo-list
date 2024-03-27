@@ -35,7 +35,7 @@
 
 @media (min-width: 768px) {
   .inputWrapper {
-    max-width: 768px;
+    max-width: 736px;
     margin: 0 auto;
     left: 2rem;
     right: 2rem;

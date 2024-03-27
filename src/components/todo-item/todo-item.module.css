@@ -1,7 +1,88 @@
 .todoItem {
   background-color: var(--gray-500);
-  
+
   padding: 1rem;
+  border-radius: 0.5rem;
 
   font-size: 0.875rem;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.isDone {
+  text-decoration-line: line-through;
+  color: var(--gray-300);
+}
+
+input[type="checkbox"] {
+  position: relative;
+  cursor: pointer;
+
+  min-width: 20px;
+  appearance: none;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: -2px;
+  left: -2px;
+  border: 3px solid var(--blue);
+  background-color: var(--gray-500);
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+input[type="checkbox"]:hover::before {
+  background-color: #1e6f9f25;
+  border-color: var(--blue-dark);
+}
+
+input[type="checkbox"]:checked::before {
+  background-color: var(--purple-dark);
+  border-color: var(--purple-dark);
+}
+
+input[type="checkbox"]:checked:hover::before {
+  background-color: var(--purple);
+  border-color: var(--purple);
+}
+
+input[type="checkbox"]:checked::after {
+  content: "✔";
+  color: var(--gray-100);
+  display: inline-block;
+  position: absolute;
+  left: 30%;
+  top: 0%;
+}
+
+input[type="checkbox"]:focus-visible::before {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--blue);
+  outline-offset: 4px;
+}
+
+.todoItem button svg {
+  fill: var(--gray-300);
+}
+
+.todoItem button {
+  padding: 6px;
+  border-radius: 4px;
+  line-height: 0;
+  transition: background-color 0.15s;
+  margin-left: auto;
+}
+
+.todoItem button:hover {
+  background-color: var(--gray-400);
+}
+
+.todoItem button:hover svg {
+  fill: var(--danger);
 }

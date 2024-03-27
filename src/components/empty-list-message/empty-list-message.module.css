@@ -1,0 +1,18 @@
+.emptyListMessage {
+  padding-top: 4rem;
+  text-align: center;
+  color: var(--gray-300);
+
+  display: grid;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.emptyListMessage img {
+  display: block;
+  margin: 0 auto;
+}
+
+.emptyListMessage > strong {
+  font-weight: 700;
+}

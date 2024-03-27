@@ -1,12 +1,15 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 
 import {
+  Badge,
+  EmptyListMessage,
   Header,
   InputWrapper,
   Logo,
   TodoItem,
   TodoListHeader,
   TodoListWrapper,
+  TrashIcon,
 } from "./components";
 
 import "./styles/global.css";
@@ -14,22 +17,14 @@ import "./styles/global.css";
 interface Todo {
   id: string;
   text: string;
+  isDone: boolean;
 }
 
 export function App() {
   const [newTodo, setNewTodo] = useState("");
-  const [todos, setTodos] = useState<Todo[]>([
-    {
-      id: "2024-03-22T16:00:33.640Z",
-      text: "Ir no super",
-    },
-    {
-      id: "2024-03-20T10:00:33.640Z",
-      text: "Fazer almoço",
-    },
-  ]);
+  const [todos, setTodos] = useState<Todo[]>([]);
 
-  function handleNewTodoCHange(event: ChangeEvent<HTMLInputElement>) {
+  function handleNewTodoChange(event: ChangeEvent<HTMLInputElement>) {
     setNewTodo(event.target.value);
   }
 
@@ -40,13 +35,36 @@ export function App() {
       {
         id: new Date().toISOString(),
         text: newTodo,
+        isDone: false,
       },
       ...todos,
     ]);
+
+    setNewTodo("");
   }
 
-  const totalTodos = todos.length 
-  const totalDoneTodos = todos.length
+  function handleDeleteTodo(deletedTodoId: string) {
+    const filteredTodos = todos.filter(({ id }) => deletedTodoId !== id);
+    setTodos(filteredTodos);
+  }
+
+  function handleCompleteTodo(completedTodoId: string) {
+    const deletedTodo = todos.find(({ id }) => id === completedTodoId);
+
+    if (!deletedTodo) return;
+
+    const filteredTodos = todos.filter(({ id }) => completedTodoId !== id);
+
+    const sortedTodos = [
+      { ...deletedTodo, isDone: !deletedTodo.isDone },
+      ...filteredTodos,
+    ].sort((a, b) => Date.parse(b.id) - Date.parse(a.id));
+
+    setTodos(sortedTodos);
+  }
+
+  const totalTodos = todos.length;
+  const totalDoneTodos = todos.filter(({ isDone }) => isDone === true).length;
 
   return (
     <>
@@ -57,7 +75,8 @@ export function App() {
             type="text"
             placeholder="Adicione uma nova tarefa"
             aria-placeholder="Adicione uma nova tarefa"
-            onChange={handleNewTodoCHange}
+            value={newTodo}
+            onChange={handleNewTodoChange}
           />
           <button type="submit">Criar</button>
         </InputWrapper>
@@ -65,14 +84,41 @@ export function App() {
 
       <main>
         <TodoListHeader>
-          <span>Tarefas criadas {totalTodos}</span>
-          <span>Concluídas {totalDoneTodos}</span>
+          <span>
+            Tarefas criadas<Badge>{totalTodos}</Badge>
+          </span>
+          <span>
+            Concluídas
+            <Badge>
+              {totalDoneTodos} de {totalTodos}
+            </Badge>
+          </span>
         </TodoListHeader>
 
         <TodoListWrapper>
-          {todos.map(({ id, text }) => (
-            <TodoItem key={id}>{text}</TodoItem>
-          ))}
+          {totalTodos === 0 ? (
+            <EmptyListMessage />
+          ) : (
+            <>
+              {todos.map(({ id, text, isDone }) => (
+                <TodoItem key={id} isDone={isDone}>
+                  <input
+                    type="checkbox"
+                    onChange={() => handleCompleteTodo(id)}
+                    checked={isDone}
+                    aria-label="Clique pata marcar a tarefa"
+                  />
+                  {text}
+                  <button
+                    onClick={() => handleDeleteTodo(id)}
+                    aria-label="Clique para deletar a tarefa"
+                  >
+                    <TrashIcon />
+                  </button>
+                </TodoItem>
+              ))}
+            </>
+          )}
         </TodoListWrapper>
       </main>
     </>

@@ -1,21 +1,34 @@
 .todoListHeader {
   padding: 4rem 1.5rem 1rem;
-  
+
   font-weight: 700;
+  font-size: 0.875rem;
 
   display: flex;
-  align-items: center;
   justify-content: space-between;
 }
 
-.todoListHeader :first-child {
+.todoListHeader > span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  white-space: nowrap;
+}
+
+.todoListHeader > :first-child {
   color: var(--blue);
+}
+
+.todoListHeader > :last-child {
+  color: var(--purple);
 }
 
 @media (min-width: 768px) {
   .todoListHeader {
-    max-width: 832px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 5.75rem 2rem 1.5rem;
+    font-size: 1rem;
   }
 }
