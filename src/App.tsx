@@ -9,7 +9,6 @@ import {
   TodoItem,
   TodoListHeader,
   TodoListWrapper,
-  TrashIcon,
 } from "./components";
 
 import { Todo } from "./types";
@@ -39,12 +38,7 @@ export function App() {
     setNewTodo("");
   }
 
-  function handleDeleteTodo(deletedTodoId: string) {
-    const filteredTodos = todos.filter(({ id }) => deletedTodoId !== id);
-    setTodos(filteredTodos);
-  }
-
-  function handleCompleteTodo(completedTodoId: string) {
+  function completeTodo(completedTodoId: string) {
     const deletedTodo = todos.find(({ id }) => id === completedTodoId);
 
     if (!deletedTodo) return;
@@ -57,6 +51,11 @@ export function App() {
     ].sort((a, b) => Date.parse(b.id) - Date.parse(a.id));
 
     setTodos(sortedTodos);
+  }
+
+  function deleteTodo(deletedTodoId: string) {
+    const filteredTodos = todos.filter(({ id }) => deletedTodoId !== id);
+    setTodos(filteredTodos);
   }
 
   return (
@@ -86,22 +85,13 @@ export function App() {
             <EmptyListMessage />
           ) : (
             <>
-              {todos.map(({ id, text, isDone }) => (
-                <TodoItem key={id} isDone={isDone}>
-                  <input
-                    type="checkbox"
-                    onChange={() => handleCompleteTodo(id)}
-                    checked={isDone}
-                    aria-label="Clique pata marcar a tarefa"
-                  />
-                  {text}
-                  <button
-                    onClick={() => handleDeleteTodo(id)}
-                    aria-label="Clique para deletar a tarefa"
-                  >
-                    <TrashIcon />
-                  </button>
-                </TodoItem>
+              {todos.map((todo) => (
+                <TodoItem
+                  key={todo.id}
+                  onCompleteTodo={completeTodo}
+                  onDeleteTodo={deleteTodo}
+                  {...todo}
+                />
               ))}
             </>
           )}

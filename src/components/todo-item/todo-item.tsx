@@ -1,20 +1,48 @@
-import { ComponentProps, ReactNode } from "react";
+import { TrashIcon } from "..";
+
+import { Todo } from "../../types";
 
 import styles from "./todo-item.module.css";
 
-type TodoItemProps = ComponentProps<"li"> & {
-  isDone?: boolean;
-  children: ReactNode;
-};
+interface TodoItemProps extends Todo {
+  onCompleteTodo: (id: string) => void;
+  onDeleteTodo: (id: string) => void;
+}
 
-export function TodoItem({ isDone, children }: TodoItemProps) {
+export function TodoItem({
+  id,
+  text,
+  isDone,
+  onCompleteTodo,
+  onDeleteTodo,
+}: TodoItemProps) {
+  function handleCompleteTodo() {
+    onCompleteTodo(id);
+  }
+
+  function handleDeleteTodo() {
+    onDeleteTodo(id);
+  }
+
+  const todoItemClass = isDone
+    ? styles.todoItem + " " + styles.isDone
+    : styles.todoItem;
+
   return (
-    <li
-      className={
-        isDone ? styles.todoItem + " " + styles.isDone : styles.todoItem
-      }
-    >
-      {children}
+    <li className={todoItemClass}>
+      <input
+        type="checkbox"
+        onChange={handleCompleteTodo}
+        checked={isDone}
+        aria-label="Clique pata marcar a tarefa"
+      />
+      {text}
+      <button
+        onClick={handleDeleteTodo}
+        aria-label="Clique para deletar a tarefa"
+      >
+        <TrashIcon />
+      </button>
     </li>
   );
 }
