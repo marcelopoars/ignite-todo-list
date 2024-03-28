@@ -1,7 +1,8 @@
 {
-  "name": "todo-list",
+  "name": "ignite-todo-list",
   "private": true,
-  "version": "0.0.0",
+  "description": "App desenvolvido para o Ignite | Rocketseat: Desafio ReactJs",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,6 +10,20 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcelopoars/ignite-todo-list.git"
+  },
+  "author": {
+    "name": "Marcelo Pereira",
+    "email": "marcelo.fatecpoa@gmail.com",
+    "url": "https://www.marcelopereira.dev"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marcelopoars/ignite-todo-list/issues"
+  },
+  "homepage": "https://ignite-todo-list.marcelopereira.dev",
   "dependencies": {
     "@phosphor-icons/react": "^2.0.15",
     "react": "^18.2.0",
