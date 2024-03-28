@@ -1,5 +1,4 @@
-import { TrashIcon } from "..";
-
+import { Trash } from "@phosphor-icons/react";
 import { Todo } from "../../types";
 
 import styles from "./todo-item.module.css";
@@ -41,7 +40,7 @@ export function TodoItem({
         onClick={handleDeleteTodo}
         aria-label="Clique para deletar a tarefa"
       >
-        <TrashIcon />
+        <Trash size={20}/>
       </button>
     </li>
   );

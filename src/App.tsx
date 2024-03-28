@@ -6,7 +6,6 @@ import {
   Header,
   InputWrapper,
   Logo,
-  PlusIcon,
   TodoItem,
   TodoListHeader,
   TodoListWrapper,
@@ -15,6 +14,7 @@ import {
 import { Todo } from "./types";
 
 import "./styles/global.css";
+import { PlusCircle } from "@phosphor-icons/react";
 
 export function App() {
   const [newTodo, setNewTodo] = useState("");
@@ -73,7 +73,7 @@ export function App() {
           />
           <button type="submit" disabled={!newTodo}>
             Criar
-            <PlusIcon />
+            <PlusCircle size={20} weight="bold" />
           </button>
         </InputWrapper>
       </Header>
