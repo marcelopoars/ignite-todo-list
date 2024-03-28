@@ -1,4 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from "react";
+import { PlusCircle } from "@phosphor-icons/react";
 
 import {
   EmptyListMessage,
@@ -14,7 +15,6 @@ import {
 import { Todo } from "./types";
 
 import "./styles/global.css";
-import { PlusCircle } from "@phosphor-icons/react";
 
 export function App() {
   const [newTodo, setNewTodo] = useState("");

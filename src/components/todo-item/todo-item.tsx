@@ -1,4 +1,5 @@
 import { Trash } from "@phosphor-icons/react";
+
 import { Todo } from "../../types";
 
 import styles from "./todo-item.module.css";
