@@ -39,14 +39,14 @@ export function App() {
   }
 
   function completeTodo(completedTodoId: string) {
-    const deletedTodo = todos.find(({ id }) => id === completedTodoId);
+    const completedTodo = todos.find(({ id }) => id === completedTodoId);
 
-    if (!deletedTodo) return;
+    if (!completedTodo) return;
 
     const filteredTodos = todos.filter(({ id }) => completedTodoId !== id);
 
     const sortedTodos = [
-      { ...deletedTodo, isDone: !deletedTodo.isDone },
+      { ...completedTodo, isDone: !completedTodo.isDone },
       ...filteredTodos,
     ].sort((a, b) => Date.parse(b.id) - Date.parse(a.id));
 
