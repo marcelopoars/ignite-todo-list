@@ -1,0 +1,39 @@
+.footer {
+  padding: 1rem 1.5rem;
+
+  font-size: 0.875rem;
+  text-align: center;
+  color: var(--gray-300);
+}
+
+.footer p + p {
+  margin-top: 0.5rem;
+}
+
+.footer a {
+  display: inline-block;
+  color: var(--blue-dark);
+  font-weight: 700;
+  text-decoration: none;
+  transition: color .2s;
+}
+
+.footer a:hover {
+  color: var(--blue);
+}
+
+.footer ul {
+  padding-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .footer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+  }
+}

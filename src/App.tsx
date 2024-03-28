@@ -2,6 +2,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 
 import {
   EmptyListMessage,
+  Footer,
   Header,
   InputWrapper,
   Logo,
@@ -97,6 +98,8 @@ export function App() {
           )}
         </TodoListWrapper>
       </main>
+      
+      <Footer />
     </>
   );
 }

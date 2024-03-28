@@ -30,6 +30,15 @@ body, #root {
   min-height: 100svh;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
 body,
 input,
 button {
