@@ -1,24 +1,20 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 
 import {
-  Badge,
   EmptyListMessage,
   Header,
   InputWrapper,
   Logo,
+  PlusIcon,
   TodoItem,
   TodoListHeader,
   TodoListWrapper,
   TrashIcon,
 } from "./components";
 
-import "./styles/global.css";
+import { Todo } from "./types";
 
-interface Todo {
-  id: string;
-  text: string;
-  isDone: boolean;
-}
+import "./styles/global.css";
 
 export function App() {
   const [newTodo, setNewTodo] = useState("");
@@ -63,9 +59,6 @@ export function App() {
     setTodos(sortedTodos);
   }
 
-  const totalTodos = todos.length;
-  const totalDoneTodos = todos.filter(({ isDone }) => isDone === true).length;
-
   return (
     <>
       <Header>
@@ -78,25 +71,18 @@ export function App() {
             value={newTodo}
             onChange={handleNewTodoChange}
           />
-          <button type="submit">Criar</button>
+          <button type="submit" disabled={!newTodo}>
+            Criar
+            <PlusIcon />
+          </button>
         </InputWrapper>
       </Header>
 
       <main>
-        <TodoListHeader>
-          <span>
-            Tarefas criadas<Badge>{totalTodos}</Badge>
-          </span>
-          <span>
-            Concluídas
-            <Badge>
-              {totalDoneTodos} de {totalTodos}
-            </Badge>
-          </span>
-        </TodoListHeader>
+        <TodoListHeader todos={todos} />
 
         <TodoListWrapper>
-          {totalTodos === 0 ? (
+          {todos.length === 0 ? (
             <EmptyListMessage />
           ) : (
             <>
