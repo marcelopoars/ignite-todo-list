@@ -19,7 +19,7 @@
 }
 
 .footer a:hover {
-  color: var(--blue);
+  color: var(--blue-dark);
 }
 
 .footer ul {

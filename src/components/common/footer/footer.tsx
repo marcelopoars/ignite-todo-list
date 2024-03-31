@@ -31,7 +31,7 @@ export function Footer() {
         <ul>
           <li>
             <a
-              href="https://github.com/marcelopoars/nlw-experts-notes"
+              href="https://github.com/marcelopoars/ignite-todo-list"
               target="_blank"
               rel="noopener noreferrer"
               title="Ir para o repositório Github deste projeto"
